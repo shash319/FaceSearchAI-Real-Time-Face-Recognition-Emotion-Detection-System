@@ -1,0 +1,523 @@
+/* LOGIN BUTTON ------------------------------------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet");
+
+html{
+      scroll-behavior: smooth;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.title-box img{
+    margin: 0 50px -10px 250px;
+    padding: 12px;
+    box-shadow: 0px 10px 100px  purple;
+    border-radius: 5%;
+    max-width: 250px;
+    max-height: 240px;
+}
+
+  .title-box img:hover{
+      animation: slowBounce 1.5s ease-in-out infinite;
+  }
+
+  @keyframes slowBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Adjust distance for bounce height */
+  }
+}
+
+
+.body{
+    padding: 0;
+    margin: 0;
+    background: #f0f2f5;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.box{
+    background-image: url("../assets/Weather-Background.jpg");
+    background-position:left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.title-box, .form-box{
+width: 35%;
+margin-left: 15%;
+}
+
+.title-box p{
+    margin: 30px 30px 20px 200px;
+    color: #000;
+    text-align: center;
+    box-shadow: 0px 5px 5px 4px yellow;
+    font-size: 26px;
+    line-height: 32px; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.form-box{
+    width: 350px;
+    padding: 35px;
+    text-align: center;
+    border-radius: 5px;
+    background:  #fff;
+    margin-left: 50px;
+    box-shadow: 0px 2px 10px 1px rgba(71, 71, 71, 0.52);
+}
+
+.form-box input{
+    width: 100%;
+    margin-bottom: 15px;
+    padding:  15px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 2px solid #eeebeb;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+.form-box button{
+    width: 100%;
+    margin-bottom: 15px;
+    height: 50px;
+    text-shadow: 1px 1px 3px #000;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    padding: 13px 0;
+    cursor: pointer;
+    background:  #cff018;
+}
+.form-box button:hover{
+    background: #f2b818;
+}
+.form-box a{
+    color: #166fe5;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+.form-box hr{
+    border: 1px solid #dadde1;
+    margin-bottom: 15px ;
+
+}
+
+.form-box .create-btn a{
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background: #f942ff;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px #000;
+    box-shadow: 5px 5px 10px yellow
+}
+
+.form-box .create-btn a:hover{
+        background-color:  #70b562 ;
+        font-size: 16px;
+        text-align: center;
+        height: 1.2rem;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.form-box .create-btn a:active {
+  /* Scale the button down slightly when clicked */
+  transform: scale(0.95); 
+  /* Move it down to simulate being pressed in */
+  transform: translateY(2px); 
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* Less shadow when pressed */
+}
+
+
+form a{
+    font-weight: 800;
+}
+
+
+@media (max-width: 780px){
+
+    .title-box img{
+        width: 230px;
+        margin: 0px 0px 500px 130px;
+    }
+    .title-box p{
+        margin: 18px 18px 18px 18px;
+        color: #000;
+        font-size: 0px;
+        line-height: 22px; 
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .form-box, .form-box2{
+        width: 670px;
+        height: 400px;
+        padding: 15px;
+        text-align: center;
+        border-radius: 5px;
+        background:  #fff;
+        margin:80px 0px 70px -470px;
+        box-shadow: 0px 2px 10px 1px rgba(71, 71, 71, 0.52);
+    }
+
+    .form-box, .form-box2 input{
+        width: 100%;
+        background-color: #eeebeb;
+        margin-bottom: 15px;
+        padding:  18px;
+        font-size: 17px;
+        box-sizing: border-box;
+        border: 1px solid #eeebeb;
+        border-radius: 5px;
+        outline: none;
+    }
+    .form-box, .form-box2 button{
+        width: 100%;
+        margin-bottom: 15px;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 5px;
+        border: none;
+        padding: 16px 0;
+        cursor: pointer;
+        background:  #166fe5
+    }
+
+    .form-box, .form-box2 a{
+        color: #166fe5;
+        font-size: 14px;
+        text-decoration: none;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .form-box, .form-box2 .create-btn a{
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        padding: 15px 20px;
+        border-radius: 5px;
+        background: #36a420;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+}
+
+
+@media (max-width: 450px )
+{
+
+ .box{
+    display: flex;
+    justify-content: conter;
+    margin-left: 15px;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+    .form-box, .form-box2{
+        width: 950px;
+        height: 320px;
+        padding: 15px;
+        text-align: center;
+        border-radius: 5px;
+        background:  #fff;
+        margin: 10px 35px 70px -280px;
+        box-shadow: 0px 2px 10px 1px rgba(71, 71, 71, 0.52);
+    }   
+    .title-box img{
+        width: 0px;
+        margin-bottom: 10px;
+    }       
+    .title-box p{
+        margin: 18px 18px 18px 18px;
+        color: #000;
+        font-size: 0px;
+        line-height: 22px; 
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+   
+
+}
+
+
+
+/* REGISTER BUTTON ------------------------------------------------------------------------------------------------- */
+
+#login_forget{
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 800;
+}
+
+
+.form-box2{
+    width: 450px;
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+    background:  #fff;
+    margin-left: 80px;
+    box-shadow: 0px 2px 10px 1px rgba(71, 71, 71, 0.52);
+}
+
+.form-box2 input{
+    width: 100%;
+    margin-bottom: 15px ;
+    padding:  15px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 2px solid #eeebeb;
+    border-radius: 5px;
+    outline: none;
+}
+
+.last{
+    margin: -100px 2px 100px 720px;
+}
+
+.form-box2 button{
+    width: 100%;
+    margin-bottom: 15px;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    padding: 13px 0;
+    cursor: pointer;
+    text-shadow: 1px 1px 3px #000;
+    background:  #cff018;
+}
+.form-box2 button:hover{
+    background: #f2b818;
+    text-shadow: 1px 1px 3px #000;
+}
+.form-box2 a{
+    color: #166fe5;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.form-box2 a:hover {
+    text-decoration: underline;
+}
+
+.form-box2 hr{
+    border: 1px solid #dadde1;
+    margin-bottom: 15px ;
+
+}
+
+/* .form-box2 .create-btn a{
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background: #f942ff;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.form-box2 .create-btn a:hover{
+    background-color:  #70b562 ;
+} */
+
+.form-box2 .create-btn a{
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background: #f942ff;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px #000;
+    box-shadow: 5px 5px 10px yellow
+}
+
+.form-box2 .create-btn a:hover{
+        background-color:  #70b562 ;
+        font-size: 16px;
+        text-align: center;
+        height: 1.2rem;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.form-box2 .create-btn a:active {
+  /* Scale the button down slightly when clicked */
+  transform: scale(0.95); 
+  /* Move it down to simulate being pressed in */
+  transform: translateY(2px); 
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* Less shadow when pressed */
+}
+
+
+
+/* VIP BUTTON ------------------------------------------------------------------------------------------------- */
+
+/* styles.css */
+
+#vip {
+    font-family: Inter, sans-serif;
+    background-image: url("../assets/background_intro2.jpg");
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 420px; /* Width is 300px, height is auto */
+    height: 100vh;
+}
+
+#vip > h2 {
+  margin-top: 30px;
+  position: absolute;
+  -webkit-text-stroke: 2px #fff; /* Width and color of the stroke */
+  text-stroke: 2px #fff;         /* Standard property */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  color: #743dff;
+  text-shadow: 10px 10px 20px #FFD700;
+}
+
+.payment-container { 
+    margin-top: 80px;
+    height: 61vh;
+    position: relative;
+    background-color: #fff;
+    /* background-image: url("./imagez/background_intro2.jpg"); */
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.payment-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.payment-container label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.payment-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #purple;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.payment-container button {
+    width: 105%;
+    margin-left: -5px;
+    margin-top: 20px;
+    padding: 10px;
+    height: 60px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.payment-container button:hover {
+    background-color: #0056b3;
+}
+
+#message {
+    margin-top: 10px;
+    color: green;
+    font-size: 14px;
+}
+
+/* .pay-message {
+    width: 60%;
+    border-radius: 20px;
+    margin: 20px auto;
+    color:  #029aff;
+    padding: 5px 0px
+} */
+
+.pay-message: empty{
+    display: none;
+}
+
+.success-payment .pay-message, .invalid-payment .pay-message{
+    width: 60%;
+    border-radius: 20px;
+    margin: 20px auto;
+    color:  #029aff;
+    background-color: yellow;
+    padding: 5px 0px
+}
+
+.success-payment{
+    background: linear-gradient(135deg, #0f9d58, #34c759);
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 255, 100, 0.5),
+                0 0 40px rgba(0, 255, 100, 0.3);
+    animation: successGlow 0.6s ease;
+}
+
+@keyframes successGlow{
+  0%{transform:scale(0.95);}
+  50%{transform:scale(1.02);}
+  100%{transform:scale(1);}
+}
+
+.invalid-payment{
+    background: linear-gradient(135deg, #e4290c, #ff4b4b);
+    color: white;
+    box-shadow: 0 0 20px rgb(255, 0, 0, 0.5),
+                0 0 40px rgb(255, 0, 0, 0.3);
+    animation: successGlow 0.6s ease;
+}
