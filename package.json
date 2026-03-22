@@ -2,7 +2,7 @@
   "name": "face-ai",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://shash319.github.io/FaceSearchAI-Real-Time-Face-Recognition-Emotion-Detection-System/",
+  "homepage": "https://shash319.github.io/FaceSearchAI-Real-Time-Face-Recognition-Emotion-Detection-System",
   "type": "module",
   "scripts": {
     "dev": "vite",
