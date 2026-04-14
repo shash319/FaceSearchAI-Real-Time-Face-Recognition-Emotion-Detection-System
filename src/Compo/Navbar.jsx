@@ -2,10 +2,7 @@ import "../index.css";
 import web_logo from "../assets/download facesearch.jpeg";
 import { Link } from 'react-router-dom';
 
-
 const Navbar = () => {
-
-
   //   const handleDblClk = (e) => {
   //     e.preventDefault();
   // document.getElementById("features")

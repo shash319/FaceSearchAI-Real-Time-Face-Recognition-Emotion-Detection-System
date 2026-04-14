@@ -31,11 +31,11 @@ const Contact = () => {
 
         <div className="social-container">
 
-          <a href="#" className="social-card insta"><FaInstagram/>Instagram</a>
-          <a href="#" className="social-card linkedin"><FaLinkedin/>LinkedIn</a>
-          <a href="#" className="social-card youtube"><FaYoutube/>YouTube</a>
-          <a href="#" className="social-card facebook"><FaFacebook/>Facebook</a>
-          <a href="#" className="social-card x"><FaXTwitter/>X (Twitter)</a>
+          <a href="https://www.instagram.com/shasawat_ak47/" className="social-card insta"><FaInstagram/>Instagram</a>
+          <a href="https://www.linkedin.com/in/shasawat-pal-9506781a9/" className="social-card linkedin"><FaLinkedin/>LinkedIn</a>
+          <a href="https://www.youtube.com/@ClickNCodeShas" className="social-card youtube"><FaYoutube/>YouTube</a>
+          <a href="https://www.facebook.com/shasawat.pal.1" className="social-card facebook"><FaFacebook/>Facebook</a>
+          <a href="https://x.com/p_shasawat_bro" className="social-card x"><FaXTwitter/>X (Twitter)</a>
 
         </div>
 
