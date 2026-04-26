@@ -535,6 +535,7 @@ box-shadow:
   50% {
     transform: translateY(-10px); /* Adjust distance for bounce height */
   }
+  
 }
 
 

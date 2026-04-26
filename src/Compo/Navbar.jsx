@@ -8,7 +8,7 @@ const Navbar = () => {
   // document.getElementById("features")
   //   ?.scrollIntoView({ behavior: "smooth" });
   //   }
-
+  
   return (
     <>
         <div className="App">
