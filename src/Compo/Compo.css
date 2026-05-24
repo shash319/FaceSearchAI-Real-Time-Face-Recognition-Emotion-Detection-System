@@ -96,8 +96,6 @@ margin-left: 15%;
     height: 50px;
     text-shadow: 1px 1px 3px #000;
     color: #fff;
-    font-size: 20px;
-    font-weight: 600;
     border-radius: 5px;
     border: none;
     padding: 13px 0;
@@ -107,6 +105,19 @@ margin-left: 15%;
 .form-box button:hover{
     background: #f2b818;
 }
+
+.form-box button a{
+    color: #fff; 
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0px;
+    text-decoration: none;
+}
+
+.form-box button a:hover{
+    text-decoration: none;
+}
+
 .form-box a{
     color: #166fe5;
     font-size: 14px;
@@ -324,6 +335,19 @@ form a{
     background: #f2b818;
     text-shadow: 1px 1px 3px #000;
 }
+
+.form-box2 button a{
+    color: #fff; 
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0px;
+    text-decoration: none;
+}
+
+.form-box2 button a:hover{
+    text-decoration: none;
+}
+
 .form-box2 a{
     color: #166fe5;
     font-size: 14px;

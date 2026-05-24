@@ -1,6 +1,7 @@
 import React from 'react'
 import '../Compo/Compo.css'
 import web_logo from "../assets/download facesearch.jpeg";
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -14,12 +15,12 @@ const Login = () => {
             <form action="#">
             <input type="text" placeholder="Email address or phone number"/>
             <input type="password" placeholder="Password"/>
-            <button type="submit"> Log in </button> 
-            <a href="#"> Forgotten password?</a>
+            <button type="submit"><Link to="/login">Log in</Link></button> 
+            <Link to="/login">Forgotten password?</Link>
             </form>
             <hr/>
             <div className='create-btn'>
-                <a href="#">Create New Account</a>
+                <Link to="/register">Create New Account</Link>
             </div>    
         </div>    
     </div>

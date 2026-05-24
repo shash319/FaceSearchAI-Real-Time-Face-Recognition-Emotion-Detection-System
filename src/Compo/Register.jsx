@@ -1,6 +1,7 @@
 import React from 'react'
 import '../Compo/Compo.css'
 import web_logo from "../assets/download facesearch.jpeg";
+import { Link } from 'react-router-dom';
 
 
 const Register = () => {
@@ -21,17 +22,16 @@ const Register = () => {
           <input type="text" placeholder="Email Address"/>
           <input type="password" placeholder="Password"/>
           <input type="number" placeholder="Contact"/>
-         <button type="submit"> Sign Up </button> 
+         <button type="submit"> <Link to="/register">Sign Up</Link> </button> 
          <div id="login_forget">
-            <a href="#"> Log in</a>
-            <a href="#"> Forgotten password?</a>
+            <Link to="/register">Forgotten password?</Link>
          </div>
        
 
         </form>
         <hr/>
         <div className="create-btn">
-          <a href="#">Create new account</a>
+          <Link to="/login">Log in</Link>
         </div>
       </div>
     </div>
