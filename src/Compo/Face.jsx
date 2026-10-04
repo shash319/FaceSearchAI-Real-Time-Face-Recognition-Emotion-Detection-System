@@ -38,15 +38,15 @@ const Face = () => {
   // ✅ LOAD LABELED IMAGES (SAFE VERSION)
   const loadLabeledImages = async () => {
     const people = {
-      shasawat: 14,
-      guest: 1,
-      Elon: 7,
-      bill: 8,
-      jensen: 8,
-      mark: 10,
-      ratan_tata: 9,
-      sam: 9,
-      shushant: 10,
+      Shasawat: 14,
+      Guest: 1,
+      Elon_Musk: 7,
+      Bill_Gates: 8,
+      Jensen_Huang: 8,
+      Mark_Zuck: 10,
+      Ratan_Tata: 9,
+      Sam_Altman: 9,
+      Shushant_SR: 10,
     };
 
     return Promise.all(
@@ -58,12 +58,12 @@ const Face = () => {
 
           try {
             img = await faceapi.fetchImage(
-              `${import.meta.env.BASE_URL}faces/${label}/${i}.jpg`,
+              `${import.meta.env.BASE_URL}public/faces/${label}/${i}.jpg`,
             );
           } catch {
             try {
               img = await faceapi.fetchImage(
-                `${import.meta.env.BASE_URL}faces/${label}/${i}.png`,
+                `${import.meta.env.BASE_URL}public/faces/${label}/${i}.png`,
               );
             } catch {
               console.warn(`❌ Missing: ${label}/${i}`);
