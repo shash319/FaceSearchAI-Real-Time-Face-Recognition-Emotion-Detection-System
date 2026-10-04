@@ -3,27 +3,32 @@ import * as faceapi from "face-api.js";
 import "../App.css";
 
 const Face = () => {
-
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const streamRef = useRef(null);
   const intervalRef = useRef(null);
+  const faceMatcherRef = useRef(null);
 
   // ✅ START CAMERA
   const startVideo = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      videoRef.current.srcObject = stream;
-      streamRef.current = stream;
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { width: 640, height: 480 },
+      });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        streamRef.current = stream;
+      }
     } catch (err) {
-      console.error("Camera error:", err);
+      console.error("❌ Camera error:", err);
+      alert("Camera permission denied or not available");
     }
   };
 
   // ✅ STOP CAMERA
   const stopCamera = () => {
     if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current.getTracks().forEach((track) => track.stop());
     }
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -32,26 +37,27 @@ const Face = () => {
 
   // ✅ LOAD LABELED IMAGES (SAFE VERSION)
   const loadLabeledImages = async () => {
-
     const people = {
       shasawat: 14,
-      guest: 1
+      guest: 1,
     };
 
     return Promise.all(
       Object.entries(people).map(async ([label, count]) => {
-
         const descriptions = [];
 
         for (let i = 1; i <= count; i++) {
-
           let img;
 
           try {
-            img = await faceapi.fetchImage(`/face-ai/public/faces/${label}/${i}.jpg`);
+            img = await faceapi.fetchImage(
+              `${import.meta.env.BASE_URL}faces/${label}/${i}.jpg`,
+            );
           } catch {
             try {
-              img = await faceapi.fetchImage(`/face-ai/public/faces/${label}/${i}.png`);
+              img = await faceapi.fetchImage(
+                `${import.meta.env.BASE_URL}faces/${label}/${i}.png`,
+              );
             } catch {
               console.warn(`❌ Missing: ${label}/${i}`);
               continue;
@@ -72,116 +78,166 @@ const Face = () => {
         }
 
         return new faceapi.LabeledFaceDescriptors(label, descriptions);
-      })
+      }),
     );
   };
 
   // ✅ DETECT FACES
-  const detectFaces = (faceMatcher) => {
-
+  const detectFaces = () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
 
+    if (!video || !canvas) return;
+
     const displaySize = {
       width: video.videoWidth,
-      height: video.videoHeight
+      height: video.videoHeight,
     };
+
+    canvas.width = displaySize.width;
+    canvas.height = displaySize.height;
 
     faceapi.matchDimensions(canvas, displaySize);
 
     intervalRef.current = setInterval(async () => {
+      if (!video || !faceMatcherRef.current) return;
 
-      const detections = await faceapi
-        .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-        .withFaceLandmarks()
-        .withFaceExpressions()
-        .withFaceDescriptors();
+      try {
+        const detections = await faceapi
+          .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withFaceDescriptors();
 
-      const resized = faceapi.resizeResults(detections, displaySize);
+        const resized = faceapi.resizeResults(detections, displaySize);
 
-      const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
 
-      resized.forEach(result => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        const bestMatch = faceMatcher.findBestMatch(result.descriptor);
+        resized.forEach((result) => {
+          const bestMatch = faceMatcherRef.current.findBestMatch(
+            result.descriptor,
+          );
 
-        // ✅ UNKNOWN LOGIC
-        let name = "Unknown";
-        if (bestMatch.distance < 0.5) {
-          name = bestMatch.label;
-        }
+          // ✅ UNKNOWN LOGIC
+          let name = "Unknown";
+          if (bestMatch.distance < 0.5) {
+            name = bestMatch.label;
+          }
 
-        const box = result.detection.box;
+          const box = result.detection.box;
 
-        const expressions = result.expressions;
+          const expressions = result.expressions;
 
-        const emotion = Object.keys(expressions).reduce((a, b) =>
-          expressions[a] > expressions[b] ? a : b
-        );
+          const emotion = Object.keys(expressions).reduce((a, b) =>
+            expressions[a] > expressions[b] ? a : b,
+          );
 
-        const emojiMap = {
-          happy: "😄",
-          sad: "😢",
-          angry: "😡",
-          surprised: "😲",
-          neutral: "😐",
-          fearful: "😨",
-          disgusted: "🤢"
-        };
+          const emojiMap = {
+            happy: "😄",
+            sad: "😢",
+            angry: "😡",
+            surprised: "😲",
+            neutral: "😐",
+            fearful: "😨",
+            disgusted: "🤢",
+          };
 
-        // 🎨 COLOR BASED ON MATCH
-        ctx.strokeStyle = name === "Unknown" ? "red" : "#00eaff";
-        ctx.lineWidth = 3;
-        ctx.setLineDash([6, 4]);
+          // 🎨 COLOR BASED ON MATCH
+          ctx.strokeStyle = name === "Unknown" ? "red" : "#00eaff";
+          ctx.lineWidth = 3;
+          ctx.setLineDash([6, 4]);
 
-        ctx.strokeRect(box.x, box.y, box.width, box.height);
+          ctx.strokeRect(box.x, box.y, box.width, box.height);
 
-        // LABEL
-        ctx.font = "13px Orbitron, Arial";
-        ctx.fillStyle = "#00eaff";
-        ctx.lineWidth = 3;
-        
+          // LABEL
+          ctx.font = "bold 16px Orbitron, Arial";
+          ctx.fillStyle = "#00eaff";
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = "#000000";
 
-        ctx.fillText(
-          `${name} (${bestMatch.distance.toFixed(2)}) | ${emojiMap[emotion]} ${emotion}`,
-          box.x,
-          box.y - 10
-        );
-      });
+          // Add stroke for text readability
+          ctx.strokeText(
+            `${name} (${bestMatch.distance.toFixed(2)}) | ${emojiMap[emotion]} ${emotion}`,
+            box.x,
+            box.y - 10,
+          );
 
+          ctx.fillText(
+            `${name} (${bestMatch.distance.toFixed(2)}) | ${emojiMap[emotion]} ${emotion}`,
+            box.x,
+            box.y - 10,
+          );
+        });
+      } catch (err) {
+        console.error("Detection error:", err);
+      }
     }, 200);
   };
 
   useEffect(() => {
-
     const start = async () => {
-
       try {
+        console.log("🚀 Starting face detection initialization...");
 
-        const MODEL_URL = "/models";
+        const MODEL_URL = `${import.meta.env.BASE_URL}models`;
+        console.log("📦 Loading models from:", MODEL_URL);
 
+        // Load ALL required models
         await Promise.all([
           faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
           faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
           faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
           faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
+          faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
         ]);
 
+        console.log("✅ All models loaded successfully!");
+
+        console.log("📸 Loading labeled images...");
         const labeledDescriptors = await loadLabeledImages();
 
-        const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.5);
+        if (labeledDescriptors.length === 0) {
+          console.warn(
+            "⚠️ No labeled faces found - using unknown detection only",
+          );
+        } else {
+          console.log(`✅ Loaded ${labeledDescriptors.length} labeled faces`);
+        }
 
+        faceMatcherRef.current = new faceapi.FaceMatcher(
+          labeledDescriptors,
+          0.5,
+        );
+
+        console.log("🎥 Starting camera...");
         await startVideo();
 
-        videoRef.current.addEventListener("play", () => {
-          detectFaces(faceMatcher);
-        });
+        console.log("✅ Camera started! Waiting for video to play...");
 
+        // Better way to handle video ready state
+        if (videoRef.current) {
+          videoRef.current.onloadedmetadata = () => {
+            console.log("✅ Video metadata loaded, starting detection...");
+            detectFaces();
+          };
+
+          // Fallback if onloadedmetadata doesn't trigger
+          videoRef.current.onplay = () => {
+            if (!intervalRef.current) {
+              console.log("✅ Video playing, starting detection...");
+              detectFaces();
+            }
+          };
+        }
       } catch (err) {
-        console.error("❌ Loading failed:", err);
+        console.error("❌ Initialization failed:", err);
+        console.error("Error details:", err.message);
 
-        // 🔥 Still open camera even if error
+        // Try to open camera anyway
+        console.log("🔄 Attempting to open camera despite errors...");
         await startVideo();
       }
     };
@@ -191,32 +247,30 @@ const Face = () => {
     return () => {
       stopCamera();
     };
-
   }, []);
 
   return (
     <div className="face-app">
-
       <h1 className="title">AI Face Detection</h1>
 
       <div className="camera-container">
-
         <video
           ref={videoRef}
           autoPlay
           muted
+          playsInline
           className="video"
+          style={{ width: "100%", height: "auto" }}
         />
 
         <canvas
           ref={canvasRef}
           className="canvas"
+          style={{ position: "absolute", top: 0, left: 0 }}
         />
 
         <div className="scan-line"></div>
-
       </div>
-
     </div>
   );
 };
