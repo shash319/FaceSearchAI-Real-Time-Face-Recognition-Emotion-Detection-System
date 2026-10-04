@@ -40,6 +40,13 @@ const Face = () => {
     const people = {
       shasawat: 14,
       guest: 1,
+      Elon: 7,
+      bill: 8,
+      jensen: 8,
+      mark: 10,
+      ratan_tata: 9,
+      sam: 9,
+      shushant: 10,
     };
 
     return Promise.all(
