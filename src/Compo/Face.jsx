@@ -43,9 +43,9 @@ const Face = () => {
       Elon_Musk: 7,
       Bill_Gates: 8,
       Jensen_Huang: 8,
-      Mark_Zuck: 10,
+      Mark_Zuck: 9,
       Ratan_Tata: 9,
-      Sam_Altman: 9,
+      Sam_Altman: 8,
       Shushant_SR: 10,
     };
 
