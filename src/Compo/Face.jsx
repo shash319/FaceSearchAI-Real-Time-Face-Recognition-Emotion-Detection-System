@@ -35,7 +35,7 @@ const Face = () => {
     }
   };
 
-  // ✅ LOAD LABELED IMAGES (SAFE VERSION)
+  //✅ LOAD LABELED IMAGES - (SAFE VERSION)
   const loadLabeledImages = async () => {
     const people = {
       Shasawat: 14,
