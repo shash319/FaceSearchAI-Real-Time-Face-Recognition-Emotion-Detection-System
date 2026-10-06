@@ -39,7 +39,7 @@ const Face = () => {
   const loadLabeledImages = async () => {
     const people = {
       Shasawat: 14,
-      Guest: 1,
+      guest: 1,
       Elon_Musk: 7,
       Bill_Gates: 8,
       Jensen_Huang: 8,
