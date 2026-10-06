@@ -58,12 +58,12 @@ const Face = () => {
 
           try {
             img = await faceapi.fetchImage(
-              `${import.meta.env.BASE_URL}public/faces/${label}/${i}.jpg`,
+              `${import.meta.env.BASE_URL}faces/${label}/${i}.jpg`,
             );
           } catch {
             try {
               img = await faceapi.fetchImage(
-                `${import.meta.env.BASE_URL}public/faces/${label}/${i}.png`,
+                `${import.meta.env.BASE_URL}faces/${label}/${i}.png`,
               );
             } catch {
               console.warn(`❌ Missing: ${label}/${i}`);
